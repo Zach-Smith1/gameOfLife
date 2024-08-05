@@ -10,7 +10,8 @@
 
 # production
 /build
-
+public/bundle.js
+public/bundle.js.LICENSE.txt
 # misc
 .DS_Store
 .env.local
