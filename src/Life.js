@@ -105,7 +105,7 @@ const Grid = () => {
     setLastTick(tick);
     setTick(99999)
   }
-
+// click and drag handlers
   const handleMouseDown = () => {
     setIsMouseDown(true);
   };
@@ -119,6 +119,22 @@ const Grid = () => {
       handleClick(rowIndex, colIndex);
     }
   };
+// touch handlers
+// Touch event handlers
+const handleTouchStart = () => {
+  setIsMouseDown(true);
+};
+
+const handleTouchEnd = () => {
+  setIsMouseDown(false);
+};
+
+const handleTouchMove = (e, rowIndex, colIndex) => {
+  e.preventDefault(); // Prevent scrolling while touching
+  if (isMouseDown) {
+    handleClick(rowIndex, colIndex);
+  }
+};
 
   useEffect(() => {
     const intervalId = setInterval(nextGen, tick);
@@ -130,7 +146,10 @@ const Grid = () => {
     <div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'column' }}
     onMouseDown={handleMouseDown}
     onMouseUp={handleMouseUp}
-    onMouseLeave={handleMouseUp} // To handle the case when mouse leaves the grid
+    onMouseMove={(e) => handleMouseMove(rowIndex, colIndex)}
+    onTouchStart={handleTouchStart}
+    onTouchEnd={handleTouchEnd}
+    onTouchMove={(e) => handleTouchMove(e, rowIndex, colIndex)}
   >
       {matrix.map((row, rowIndex) => (
         <div key={rowIndex} style={{ display: 'flex' }}>
@@ -145,6 +164,7 @@ const Grid = () => {
               }}
               onClick={() => handleClick(rowIndex, colIndex)}
               onMouseMove={() => handleMouseMove(rowIndex, colIndex)}
+              onTouchMove={() => handleTouchMove(rowIndex, colIndex)}
             >
               {/* cell content here */}
             </div>
