@@ -1,8 +1,18 @@
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Life from './Life.js';
 
-function App() {
-  return (
+const App = () => {
+  const [main, setMain] = useState('app');
+
+  const changeL = (e) => {
+    e.preventDefault()
+    setMain('life')
+  }
+
+  console.log(main)
+  return main === 'app' ? (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -17,9 +27,10 @@ function App() {
         >
           Learn React
         </a>
+        <span onClick={changeL}>Life</span>
       </header>
     </div>
-  );
+  ) : <Life/>
 }
 
 export default App;
