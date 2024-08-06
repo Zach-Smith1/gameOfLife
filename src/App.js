@@ -5,11 +5,6 @@ import Life from './Life.js';
 const App = () => {
   const [main, setMain] = useState('app');
 
-  const changeL = (e) => {
-    e.preventDefault()
-    setMain('life')
-  }
-
   console.log(main)
   return main === 'app' ? (
     <div className="App">

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Grid = () => {
+const Life = () => {
   const [boxSize, setBoxSize] = useState(10);
   const [boxCount, setBoxCount] = useState(20);
   const [rowCount, setRowCount] = useState(20);
@@ -12,9 +12,12 @@ const Grid = () => {
   useEffect(() => {
     const updateLayout = () => {
       const screenWidth = window.screen.width;
+      const screenHeight = window.screen.height;
       let windowHeight = window.innerHeight;
       let windowWidth = window.innerWidth;
-      const boxSize = screenWidth * 0.005; // Each box is 1% of the screen width
+      console.log(screenWidth, screenHeight)
+      let boxSize = Math.max(screenWidth, screenHeight) * 0.005; // Each box is 1% of the screen width
+      if (screenWidth < 900 || screenHeight < 900) boxSize *= 2; // box's bigger on mobile
       const newBoxCount = Math.floor(windowWidth / boxSize);
       const newRowCount = Math.floor(windowHeight / boxSize);
       setBoxSize(boxSize);
@@ -42,8 +45,8 @@ const Grid = () => {
       prevMatrix.map((row, rIndex) =>
         row.map((cell, cIndex) =>
           rIndex === rowIndex && cIndex === colIndex
-            ? cell === 0 ? 1 : 0
-            : cell
+            ? cell = 1 : cell
+            // cell === 0 ? 1 : 0 : cell
         )
       )
     );
@@ -93,19 +96,19 @@ const Grid = () => {
 
   const speedUp = () => {
     let t = lastTick;
-    setLastTick(t-100)
-    setTick(t-100);
+    setLastTick(t - 100)
+    setTick(t - 100);
   }
   const slowDown = () => {
     let t = lastTick;
-    setLastTick(t+100)
-    setTick(t+100);
+    setLastTick(t + 100)
+    setTick(t + 100);
   }
   const pause = () => {
     setLastTick(tick);
     setTick(99999)
   }
-// click and drag handlers
+  // click and drag handlers
   const handleMouseDown = () => {
     setIsMouseDown(true);
   };
@@ -119,38 +122,37 @@ const Grid = () => {
       handleClick(rowIndex, colIndex);
     }
   };
-// touch handlers
-// Touch event handlers
-const handleTouchStart = () => {
-  setIsMouseDown(true);
-};
 
-const handleTouchEnd = () => {
-  setIsMouseDown(false);
-};
+  // Touch event handlers
+  const handleTouchStart = () => {
+    setIsMouseDown(true);
+  };
 
-const handleTouchMove = (e, rowIndex, colIndex) => {
-  e.preventDefault(); // Prevent scrolling while touching
-  if (isMouseDown) {
-    handleClick(rowIndex, colIndex);
-  }
-};
+  const handleTouchEnd = () => {
+    setIsMouseDown(false);
+  };
+
+  const handleTouchMove = (e,rowIndex, colIndex) => {
+    // e.preventDefault(); // Prevent scrolling while touching
+    if (isMouseDown) {
+      handleClick(rowIndex, colIndex);
+    }
+  };
 
   useEffect(() => {
     const intervalId = setInterval(nextGen, tick);
-
     return () => clearInterval(intervalId);
   }, [tick, matrix]);
 
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', flexDirection: 'column' }}
-    onMouseDown={handleMouseDown}
-    onMouseUp={handleMouseUp}
-    onMouseMove={(e) => handleMouseMove(rowIndex, colIndex)}
-    onTouchStart={handleTouchStart}
-    onTouchEnd={handleTouchEnd}
-    onTouchMove={(e) => handleTouchMove(e, rowIndex, colIndex)}
-  >
+    <div className='grid'
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
+      // onMouseMove={(e) => handleMouseMove(rowIndex, colIndex)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      // onTouchMove={(e) => handleTouchMove()}
+    >
       {matrix.map((row, rowIndex) => (
         <div key={rowIndex} style={{ display: 'flex' }}>
           {row.map((cell, colIndex) => (
@@ -171,19 +173,18 @@ const handleTouchMove = (e, rowIndex, colIndex) => {
           ))}
         </div>
       ))}
-      <br />
       <div className='controls'>
-      <span className='buttons'>
-        <button onClick={() => setTick(lastTick)}>GO</button>
-        <button onClick={nextGen}>UPDATE</button>
-        <button onClick={pause}>Pause</button>
-        <button onClick={speedUp}>^</button>
-        <button onClick={slowDown}>v</button>
-      </span>
+        <span className='buttons'>
+          <button onClick={() => setTick(lastTick)}>GO</button>
+          <button onClick={nextGen}>UPDATE</button>
+          <button onClick={pause}>Pause</button>
+          <button onClick={speedUp}>^</button>
+          <button onClick={slowDown}>v</button>
+        </span>
       </div>
     </div>
   )
 };
 
-export default Grid;
+export default Life;
 

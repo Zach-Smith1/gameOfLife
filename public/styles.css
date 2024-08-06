@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.App-logo {
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -35,4 +35,33 @@
   to {
     transform: rotate(360deg);
   }
+} */
+ html {
+    height: 100%;
+    overflow: hidden; /* Prevents scrolling */
+ }
+ body {
+  margin: 0;
+ }
+ button {
+  margin-left: 5px;
+  margin-right: 5px;
+ }
+ .controls {
+  z-index: 1000;
+  bottom: 0vh;
+  padding: 1vh;
+  position: sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: grey;
+}
+.grid {
+  display: 'flex';
+  flex-wrap: 'wrap';
+  flex-direction: 'column';
+  border-color: rgb(255, 0, 183);
+  border-radius: 2px;
+  border-style: solid;
 }
