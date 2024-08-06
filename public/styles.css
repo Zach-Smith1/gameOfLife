@@ -46,6 +46,7 @@
   overflow: hidden; /* Prevents scrolling */
  }
  button {
+  justify-self: center;
   margin-left: 5px;
   margin-right: 5px;
  }
@@ -57,7 +58,7 @@
   position: sticky;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   background-color: grey;
 }
 .grid {
@@ -68,10 +69,39 @@
   border-width: 6px;
   border-style: solid;
 }
+#pause {
+  font-size: large;
+}
+#clearButton,#arrowButton {
+  font-size: large;
+}
+.info {
+  position: absolute;
+  right: 3vw;
+}
 
 @media screen and (max-width: 1000px) {
   .grid {
     /* display: unset; */
     touch-action: none
+  }
+  .info {
+    font-size: small;
+    position: relative;
+    right: -2vw;
+  }
+  #clearButton,#arrowButton {
+    font-size: small;
+  }
+  .controls {
+    z-index: 1000;
+    width: 100vw;
+    bottom: 0vh;
+    padding: 1vh;
+    position: sticky;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    background-color: grey;
   }
 }

@@ -7,7 +7,8 @@ const Life = () => {
   const [matrix, setMatrix] = useState([]);
   const [lastTick, setLastTick] = useState(1000);
   const [tick, setTick] = useState(90000);
-  const [isMouseDown, setIsMouseDown] = useState(false)
+  const [isMouseDown, setIsMouseDown] = useState(false);
+  const [paused, setPaused] = useState(true);
 
   useEffect(() => {
     const updateLayout = () => {
@@ -100,8 +101,18 @@ const Life = () => {
 
   const speedUp = () => {
     let t = lastTick;
-    setLastTick(t - 100)
-    setTick(t - 100);
+    if (lastTick <= 5) {
+      return
+    } else if (lastTick <= 50) {
+      setLastTick(t - 5)
+      setTick(t - 5);
+    } else if (lastTick <= 100) {
+      setLastTick(t - 10)
+      setTick(t - 10);
+    } else {
+      setLastTick(t - 100)
+      setTick(t - 100);
+    }
   }
   const slowDown = () => {
     let t = lastTick;
@@ -109,8 +120,14 @@ const Life = () => {
     setTick(t + 100);
   }
   const pause = () => {
-    setLastTick(tick);
-    setTick(99999)
+    let p = paused;
+    if (!p) {
+      setLastTick(tick);
+      setTick(2147000000)
+    } else {
+      setTick(lastTick)
+    }
+    setPaused(!p)
   }
   // click and drag handlers
   const handleMouseDown = () => {
@@ -186,12 +203,14 @@ const Life = () => {
       ))}
       <div className='controls'>
         <span className='buttons'>
-          <button onClick={() => setTick(lastTick)}>GO</button>
-          <button onClick={nextGen}>UPDATE</button>
-          <button onClick={pause}>Pause</button>
-          <button onClick={speedUp}>^</button>
-          <button onClick={slowDown}>v</button>
-          <button onClick={newMatrix}>Clear</button>
+          {/* <button onClick={pause}>{paused === true ? '\u{25B6}' : <strong>{'\u{23F8}'}</strong> }</button>*/}
+        <button onClick={pause}>{'\u{25B6}'} <strong id='pause'>{'\u{23F8}'}<strong/></strong></button>
+          {/* <button onClick={() => setTick(lastTick)}>GO</button> */}
+          <button id='arrowButton' onClick={nextGen}>1 Step</button>
+          <button id='arrowButton' onClick={speedUp}>&#9650;</button>
+          <button id='arrowButton' onClick={slowDown}>&#9660;</button>
+          <button id='clearButton' onClick={newMatrix}>Clear</button>
+          <span className='info'>{paused ? 'Paused' : `${Math.round((1000/tick)*100)/100} generations/ second`}</span>
         </span>
       </div>
     </div>
