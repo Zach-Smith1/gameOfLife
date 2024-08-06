@@ -202,7 +202,7 @@ const Life = () => {
         </div>
       ))}
       <div className='controls'>
-        <span className='buttons'>
+        <div className='buttons'>
           {/* <button onClick={pause}>{paused === true ? '\u{25B6}' : <strong>{'\u{23F8}'}</strong> }</button>*/}
         <button onClick={pause}>{'\u{25B6}'} <strong id='pause'>{'\u{23F8}'}<strong/></strong></button>
           {/* <button onClick={() => setTick(lastTick)}>GO</button> */}
@@ -210,8 +210,8 @@ const Life = () => {
           <button id='arrowButton' onClick={speedUp}>&#9650;</button>
           <button id='arrowButton' onClick={slowDown}>&#9660;</button>
           <button id='clearButton' onClick={newMatrix}>Clear</button>
-          <span className='info'>{paused ? 'Paused' : `${Math.round((1000/tick)*100)/100} gen/ sec`}</span>
-        </span>
+        </div>
+          <div className='info'>{paused ? 'Paused' : `${Math.round((1000/tick)*100)/100} gen/ sec`}</div>
       </div>
     </div>
   )

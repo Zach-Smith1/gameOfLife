@@ -57,7 +57,7 @@
   padding: 1vh;
   position: sticky;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: start;
   background-color: grey;
 }
@@ -76,8 +76,7 @@
   font-size: large;
 }
 .info {
-  position: absolute;
-  right: 3vw;
+  width: 20vw;
 }
 
 @media screen and (max-width: 1000px) {
@@ -85,15 +84,18 @@
     /* display: unset; */
     touch-action: none
   }
+  #pause {
+    font-size: small;
+  }
   .info {
     font-size: small;
     position: relative;
-    right: -2vw;
+    /* right: -2vw; */
   }
   #clearButton,#arrowButton {
     font-size: small;
   }
-  .controls {
+  /* .controls {
     z-index: 1000;
     width: 100vw;
     bottom: 0vh;
@@ -103,5 +105,5 @@
     justify-content: start;
     align-items: start;
     background-color: grey;
-  }
+  } */
 }
