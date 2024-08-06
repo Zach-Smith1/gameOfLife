@@ -132,7 +132,7 @@ const Life = () => {
     setIsMouseDown(false);
   };
 
-  const handleTouchMove = (e,rowIndex, colIndex) => {
+  const handleTouchMove = (rowIndex, colIndex) => {
     // e.preventDefault(); // Prevent scrolling while touching
     if (isMouseDown) {
       handleClick(rowIndex, colIndex);
