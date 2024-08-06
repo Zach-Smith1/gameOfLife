@@ -41,7 +41,9 @@
     overflow: hidden; /* Prevents scrolling */
  }
  body {
+  height: 100%;
   margin: 0;
+  overflow: hidden; /* Prevents scrolling */
  }
  button {
   margin-left: 5px;
@@ -67,8 +69,9 @@
   border-style: solid;
 }
 
-/* @media screen and (max-width: 1000px) {
+@media screen and (max-width: 1000px) {
   .grid {
+    /* display: unset; */
     touch-action: none
   }
-} */
+}

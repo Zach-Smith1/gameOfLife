@@ -17,8 +17,9 @@ const Life = () => {
       let windowWidth = window.innerWidth;
       let boxSize = Math.max(screenWidth, screenHeight) * 0.005; // Each box is 1% of the screen width
       if (screenWidth < 900 || screenHeight < 900) boxSize *= 2; // box's bigger on mobile
-      const newBoxCount = Math.floor(windowWidth / boxSize);
-      const newRowCount = Math.floor(windowHeight / boxSize);
+      const newBoxCount = Math.floor(Math.min(windowWidth, screenWidth) / boxSize);
+      const newRowCount = Math.floor(Math.min(windowHeight, screenHeight) / boxSize);
+      console.log(screenHeight, windowHeight)
       setBoxSize(boxSize);
       setBoxCount(newBoxCount);
       setRowCount(newRowCount);
@@ -124,19 +125,15 @@ const Life = () => {
 
   // Touch event handlers
   const handleTouchStart = () => {
-    console.log('touchstart')
     setIsMouseDown(true);
   };
 
   const handleTouchEnd = () => {
-    console.log('touchend')
     setIsMouseDown(false);
   };
 
   const handleTouchMove = (event, rowIndex, colIndex) => {
-    console.log(event)
-
-        // Get the first touch point
+    // Get the first touch point
     const touch = event.touches[0];
     // Get the touch coordinates relative to the viewport
     let x = touch.clientX;
