@@ -49,6 +49,7 @@
  }
  .controls {
   z-index: 1000;
+  width: 100vw;
   bottom: 0vh;
   padding: 1vh;
   position: sticky;
@@ -61,7 +62,13 @@
   display: 'flex';
   flex-wrap: 'wrap';
   flex-direction: 'column';
-  border-color: rgb(255, 0, 183);
-  border-radius: 2px;
+  border-color: grey;
+  border-width: 6px;
   border-style: solid;
 }
+
+/* @media screen and (max-width: 1000px) {
+  .grid {
+    touch-action: none
+  }
+} */

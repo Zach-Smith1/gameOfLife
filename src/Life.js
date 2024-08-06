@@ -15,7 +15,6 @@ const Life = () => {
       const screenHeight = window.screen.height;
       let windowHeight = window.innerHeight;
       let windowWidth = window.innerWidth;
-      console.log(screenWidth, screenHeight)
       let boxSize = Math.max(screenWidth, screenHeight) * 0.005; // Each box is 1% of the screen width
       if (screenWidth < 900 || screenHeight < 900) boxSize *= 2; // box's bigger on mobile
       const newBoxCount = Math.floor(windowWidth / boxSize);
@@ -125,17 +124,28 @@ const Life = () => {
 
   // Touch event handlers
   const handleTouchStart = () => {
+    console.log('touchstart')
     setIsMouseDown(true);
   };
 
   const handleTouchEnd = () => {
+    console.log('touchend')
     setIsMouseDown(false);
   };
 
-  const handleTouchMove = (rowIndex, colIndex) => {
-    // e.preventDefault(); // Prevent scrolling while touching
+  const handleTouchMove = (event, rowIndex, colIndex) => {
+    console.log(event)
+
+        // Get the first touch point
+    const touch = event.touches[0];
+    // Get the touch coordinates relative to the viewport
+    let x = touch.clientX;
+    let y = touch.clientY;
+    x = Math.floor(x/boxSize)
+    y = Math.floor(y/boxSize)
+
     if (isMouseDown) {
-      handleClick(rowIndex, colIndex);
+      handleClick(y, x);
     }
   };
 
@@ -151,7 +161,7 @@ const Life = () => {
       // onMouseMove={(e) => handleMouseMove(rowIndex, colIndex)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      // onTouchMove={(e) => handleTouchMove()}
+    onTouchMove={() => handleTouchMove(event)}
     >
       {matrix.map((row, rowIndex) => (
         <div key={rowIndex} style={{ display: 'flex' }}>
@@ -166,7 +176,7 @@ const Life = () => {
               }}
               onClick={() => handleClick(rowIndex, colIndex)}
               onMouseMove={() => handleMouseMove(rowIndex, colIndex)}
-              onTouchMove={() => handleTouchMove(rowIndex, colIndex)}
+              onTouchMove={() => handleTouchMove(event,rowIndex, colIndex)}
             >
               {/* cell content here */}
             </div>
