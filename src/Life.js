@@ -33,11 +33,15 @@ const Life = () => {
     return () => window.removeEventListener('resize', updateLayout);
   }, [boxCount, rowCount]);
 
-  useEffect(() => {
-    // starting matrix
+  const newMatrix = () => {
     setMatrix(Array.from({ length: rowCount }).map(() => (
       Array.from({ length: boxCount }).fill(0))
     ))
+  }
+
+  useEffect(() => {
+    // starting matrix
+    newMatrix()
   }, [rowCount, boxCount])
 
   const handleClick = (rowIndex, colIndex) => {
@@ -187,6 +191,7 @@ const Life = () => {
           <button onClick={pause}>Pause</button>
           <button onClick={speedUp}>^</button>
           <button onClick={slowDown}>v</button>
+          <button onClick={newMatrix}>Clear</button>
         </span>
       </div>
     </div>
