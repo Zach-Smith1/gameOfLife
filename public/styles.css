@@ -76,7 +76,8 @@
   font-size: large;
 }
 .info {
-  width: 20vw;
+  color: white;
+  width: 18vw;
 }
 
 @media screen and (max-width: 1000px) {
@@ -88,7 +89,7 @@
     font-size: small;
   }
   .info {
-    font-size: small;
+    font-size: x-small;
     position: relative;
     /* right: -2vw; */
   }
