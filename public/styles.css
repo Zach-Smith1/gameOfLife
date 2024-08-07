@@ -83,6 +83,13 @@ img {
   margin: 3vh 0;
   width: 75%;
   font-size: x-large;
+  transition: 1s;
+}
+.mainPageButton:hover {
+  border-radius: 50%;
+  border-color: transparent;
+  color: white;
+  background: transparent; /* Removes background color */
 }
 .modal-overlay {
   position: fixed;
