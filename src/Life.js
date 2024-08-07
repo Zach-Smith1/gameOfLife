@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import App from './App.js'
 
 const Life = () => {
   const [boxSize, setBoxSize] = useState(10);
@@ -9,6 +10,7 @@ const Life = () => {
   const [tick, setTick] = useState(90000);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [paused, setPaused] = useState(true);
+  const [page, setPage] = useState('life');
 
   useEffect(() => {
     const updateLayout = () => {
@@ -179,7 +181,7 @@ const Life = () => {
     return () => clearInterval(intervalId);
   }, [tick, matrix]);
 
-  return (
+  return page === 'home' ? <App/> : (
     <div className='grid'
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
@@ -210,13 +212,12 @@ const Life = () => {
       ))}
       <div className='controls'>
         <div className='buttons'>
-          {/* <button onClick={pause}>{paused === true ? '\u{25B6}' : <strong>{'\u{23F8}'}</strong> }</button>*/}
-        <button onClick={pause}>{'\u{25B6}'} <strong id='pause'>{'\u{23F8}'}<strong/></strong></button>
-          {/* <button onClick={() => setTick(lastTick)}>GO</button> */}
+        <button id='arrowButton' onClick={() => {setPage('home')}}>{'\u{2302}'}</button>
+          <button id='clearButton' onClick={newMatrix}>Clear</button>
           <button id='arrowButton' onClick={nextGen}>+1 Gen</button>
           <button id='arrowButton' onClick={speedUp}>&#9650;</button>
           <button id='arrowButton' onClick={slowDown}>&#9660;</button>
-          <button id='clearButton' onClick={newMatrix}>Clear</button>
+          <button onClick={pause}>{'\u{25B6}'} <strong id='pause'>{'\u{23F8}'}<strong/></strong></button>
         </div>
           <div className='info'>{paused ? 'Paused' : `${Math.round((1000/tick)*100)/100} gen/ sec`}</div>
       </div>

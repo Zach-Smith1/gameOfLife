@@ -49,25 +49,25 @@ Here are some tetromino patterns (NOTE: The students can do maybe one or two of 
 
 Some example still lifes:
 <br/><br/>
-Square :  <img src='../public/icons/sq.png' alt='patterns'/>
+Square :  <img id='smallPic' src='../public/icons/sq.png' alt='patterns'/>
 <br/><br/>
-Boat :  <img src='../public/icons/boat.png' alt='patterns'/>
+Boat :  <img id='smallPic' src='../public/icons/boat.png' alt='patterns'/>
 <br/><br/>
-Loaf :  <img src='../public/icons/loaf.png' alt='patterns'/>
+Loaf :  <img id='smallPic' src='../public/icons/loaf.png' alt='patterns'/>
 <br/><br/>
-Ship :  <img src='../public/icons/ship.png' alt='patterns'/>
+Ship :  <img id='smallPic' src='../public/icons/ship.png' alt='patterns'/>
 <br/><br/>
 The following pattern is called a "glider." The students should follow its evolution on the game board to see that the pattern repeats every 4 generations, but translated up and to the left one square. A glider will keep on moving forever across the plane.<br/><br/>
-<img src='../public/icons/glider.png' alt='patterns'/>
+<img id='smallPic' src='../public/icons/glider.png' alt='patterns'/>
 <br/><br/>
 Another pattern similar to the glider is called the "lightweight space ship." It too slowly and steadily moves across the grid.<br/><br/>
-<img src='../public/icons/lwss.png' alt='patterns'/>
+<img id='smallPic' src='../public/icons/lwss.png' alt='patterns'/>
 <br/><br/>
 Early on (without the use of computers), Conway found that the F-pentomino (or R-pentomino) did not evolve into a stable pattern after a few iterations. In fact, it doesn't stabilize until generation 1103.<br/><br/>
-<img src='../public/icons/fpentamino.png' alt='patterns'/>
+<img id='smallPic' src='../public/icons/fpentamino.png' alt='patterns'/>
 <br/><br/>
 The F-pentomino stabilizes (meaning future iterations are easy to predict) after 1,103 iterations. The class of patterns which start off small but take a very long time to become periodic and predictable are called Methuselahs. The students should use the computer programs to view the evolution of this pattern and see how/where it becomes stable. The "acorn" is another example of a Methuselah that becomes predictable only after 5206 generations.<br/><br/>
-<img src='../public/icons/meth.png' alt='patterns'/>
+<img id='smallPic' src='../public/icons/meth.png' alt='patterns'/>
 <br/><br/>
 <h2>Computation</h2>
 It's possible even, to create patterns which emulate logic gates (and, not, or, etc.) and counters. Building up from these, it was proved that the Game of Life is Turing Complete, which means that with a suitable initial pattern, one can do any computation that can be done on any computer. Later, Paul Rendell actually constructed a simple Turing Machine as a proof of concept, which can be found here. Although Rendell's Turing Machine is fairly small, it contains all of the ideas necessary to create larger machines that could actually do meaningful calculations. One of the patterns in Jason Summers' collection will compute prime numbers, and another will compute twin primes (two primes that only differ by adding or subtracting 2).
@@ -76,7 +76,7 @@ A very far zoom out of Paul Rendell's Turing Machine:
 <br/><br/>
 <img src='/../public/icons/turingMachine.gif' alt='patterns'/>
 <br/><br/><br/>
-Source: <a href="https://pi.math.cornell.edu/~lipa/mec/lesson6.html" target="_blank" rel='noreferrer'>pi.math.cornell.edu</a>https://pi.math.cornell.edu/~lipa/mec/lesson6.html
+Source: <a href="https://pi.math.cornell.edu/~lipa/mec/lesson6.html" target="_blank" rel='noreferrer'>pi.math.cornell.edu</a>
         </p>
       </Modal>
       <div className='mainOptions'>

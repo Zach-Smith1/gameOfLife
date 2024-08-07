@@ -12,6 +12,13 @@
 .pic {
   justify-self: center;
 }
+#smallPic {
+  max-width: 50%;
+}
+img {
+  width: 100%;
+  object-fit: contain;
+}
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -57,7 +64,7 @@
  }
  button {
   justify-self: center;
-  margin: 5px
+  margin: 3px
  }
  .controls {
   z-index: 1000;
@@ -139,6 +146,9 @@
 }
 
 @media screen and (max-width: 1000px) {
+  button {
+    margin: 1px;
+  }
   .grid {
     /* display: unset; */
     touch-action: none
@@ -160,15 +170,7 @@
     width: 50vw;
     font-size: small;
   }
-  /* .controls {
-    z-index: 1000;
-    width: 100vw;
-    bottom: 0vh;
-    padding: 1vh;
-    position: sticky;
-    display: flex;
-    justify-content: start;
-    align-items: start;
-    background-color: grey;
-  } */
+  .controls {
+    font-size: small;
+  }
 }
