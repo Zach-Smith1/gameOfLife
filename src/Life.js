@@ -3,16 +3,21 @@ import App from './App.js'
 
 const Life = () => {
   const [boxSize, setBoxSize] = useState(10);
-  const [boxCount, setBoxCount] = useState(20);
-  const [rowCount, setRowCount] = useState(20);
+  const [boxCount, setBoxCount] = useState(55);
+  const [rowCount, setRowCount] = useState(55);
   const [matrix, setMatrix] = useState([]);
   const [lastTick, setLastTick] = useState(1000);
   const [tick, setTick] = useState(90000);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [paused, setPaused] = useState(true);
   const [page, setPage] = useState('life');
+  const [toggle, setToggle] = useState('transparent');
+
 
   useEffect(() => {
+    setTimeout(() => {
+      document.getElementsByClassName('fade-cover')[0].classList.add('fade-out');
+    }, 1000);
     const updateLayout = () => {
       const screenWidth = window.screen.width;
       const screenHeight = window.screen.height;
@@ -176,6 +181,14 @@ const Life = () => {
     }
   };
 
+  const toggleGrid = () => {
+    if (toggle === 'transparent') {
+      setToggle('grey')
+    } else {
+      setToggle('transparent')
+    }
+  }
+
   useEffect(() => {
     const intervalId = setInterval(nextGen, tick);
     return () => clearInterval(intervalId);
@@ -190,6 +203,7 @@ const Life = () => {
       onTouchEnd={handleTouchEnd}
     onTouchMove={() => handleTouchMove(event)}
     >
+      <div className="fade-cover"></div>
       {matrix.map((row, rowIndex) => (
         <div key={rowIndex} style={{ display: 'flex' }}>
           {row.map((cell, colIndex) => (
@@ -199,7 +213,7 @@ const Life = () => {
                 width: boxSize + 'px',
                 height: boxSize + 'px',
                 backgroundColor: cell === 0 ? 'black' : 'white',
-                // margin: '1px', // Optional: Add margin for spacing
+                border: `.1px solid ${toggle}`,
               }}
               onClick={() => handleClick(rowIndex, colIndex)}
               onMouseMove={() => handleMouseMove(rowIndex, colIndex)}
@@ -218,6 +232,7 @@ const Life = () => {
           <button id='arrowButton' onClick={speedUp}>&#9650;</button>
           <button id='arrowButton' onClick={slowDown}>&#9660;</button>
           <button onClick={pause}>{'\u{25B6}'} <strong id='pause'>{'\u{23F8}'}<strong/></strong></button>
+          <button id='arrowButton' onClick={toggleGrid}>#</button>
         </div>
           <div className='info'>{paused ? 'Paused' : `${Math.round((1000/tick)*100)/100} gen/ sec`}</div>
       </div>

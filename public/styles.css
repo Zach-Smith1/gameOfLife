@@ -12,6 +12,25 @@
   font-size: xxx-large;
   margin: 10vh;
 }
+.fade-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  opacity: 1;
+  transition: opacity 1s ease-out; /* Fade out over 1 second */
+  z-index: 9999; /* Ensure it's on top of all content */
+}
+.fade-cover.fade-out {
+  transition: .5s;
+  height: 1vh;
+  width: 1vw;
+  opacity: 0;
+  z-index: -1;
+}
+
 .pic {
   justify-self: center;
 }

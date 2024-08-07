@@ -31,6 +31,9 @@ const Instructions = () => {
       <button>{'\u{25B6}'} <strong id='pause'>{'\u{23F8}'}<strong /></strong></button><br />
       <span>Pauses/ plays simultion</span>
       <br />
+      <button id='arrowButton'>#</button><br/>
+      <span>Toggles grid lines on/ off</span>
+      <br />
     </div>
   )
 }
