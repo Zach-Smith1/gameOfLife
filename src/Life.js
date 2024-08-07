@@ -20,7 +20,6 @@ const Life = () => {
       if (screenWidth < 900 || screenHeight < 900) boxSize *= 2; // box's bigger on mobile
       const newBoxCount = Math.floor(Math.min(windowWidth, screenWidth) / boxSize);
       const newRowCount = Math.floor(Math.min(windowHeight, screenHeight) / boxSize);
-      console.log(screenHeight, windowHeight)
       setBoxSize(boxSize);
       setBoxCount(newBoxCount);
       setRowCount(newRowCount);
@@ -116,8 +115,16 @@ const Life = () => {
   }
   const slowDown = () => {
     let t = lastTick;
-    setLastTick(t + 100)
-    setTick(t + 100);
+    if (lastTick < 50) {
+      setLastTick(t + 5)
+      setTick(t + 5);
+    } else if (lastTick < 100) {
+      setLastTick(t + 10)
+      setTick(t + 10);
+    } else {
+      setLastTick(t + 100)
+      setTick(t + 100);
+    }
   }
   const pause = () => {
     let p = paused;
