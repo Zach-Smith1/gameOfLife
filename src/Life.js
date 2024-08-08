@@ -17,14 +17,14 @@ const Life = () => {
   useEffect(() => {
     setTimeout(() => {
       document.getElementsByClassName('fade-cover')[0].classList.add('fade-out');
-    }, 1000);
+    }, 100); // this code controls the fade out transition when going from main page to the life game
     const updateLayout = () => {
       const screenWidth = window.screen.width;
       const screenHeight = window.screen.height;
       let windowHeight = window.innerHeight;
       let windowWidth = window.innerWidth;
-      let boxSize = Math.max(screenWidth, screenHeight) * 0.005; // Each box is 1% of the screen width
-      if (screenWidth < 900 || screenHeight < 900) boxSize *= 2; // box's bigger on mobile
+      let boxSize = Math.max(screenWidth, screenHeight) * 0.005; // Each box is .05% of the screen width
+      if (screenWidth < 900 || screenHeight < 900) boxSize *= 2; // boxs are bigger on mobile
       const newBoxCount = Math.floor(Math.min(windowWidth, screenWidth) / boxSize);
       const newRowCount = Math.floor(Math.min(windowHeight, screenHeight) / boxSize);
       setBoxSize(boxSize);
@@ -104,7 +104,7 @@ const Life = () => {
     }
     setMatrix(newMatrix)
   }
-
+// button controls
   const speedUp = () => {
     let t = lastTick;
     if (lastTick <= 5) {
@@ -157,7 +157,6 @@ const Life = () => {
       handleClick(rowIndex, colIndex);
     }
   };
-
   // Touch event handlers
   const handleTouchStart = () => {
     setIsMouseDown(true);

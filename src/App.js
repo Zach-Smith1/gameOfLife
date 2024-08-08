@@ -18,6 +18,15 @@ const App = () => {
     }
   }
 
+  const transitionToLife = () => {
+    document.getElementsByClassName('App')[0].classList.add('fade-out')
+    const buttons = document.getElementsByClassName('mainPageButton');
+    for (let i = 0; i < buttons.length; i ++) {
+      buttons[i].classList.add('fade-out')
+    }
+    setTimeout(() => setMain('life'), 400)
+  }
+
   return main === 'app' ? (
     <div className="App">
       <header className="header">Life</header>
@@ -25,7 +34,7 @@ const App = () => {
         {activeModal === 'a' ? <About/> : <Instructions/>}
       </Modal>
       <div className='mainOptions'>
-        <button className='mainPageButton' onClick={() => setMain('life')}>Start</button>
+        <button className='mainPageButton' onClick={transitionToLife}>Start</button>
         <button className='mainPageButton' onClick={() =>switchModal('i')}>Instructions</button>
         <button className='mainPageButton' onClick={() => switchModal('a')}>About</button>
       </div>

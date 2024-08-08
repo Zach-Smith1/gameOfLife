@@ -7,6 +7,11 @@
   height: 100vh;
   color: white;
   background-color: rgb(34, 33, 31);
+  transition: .4s;
+}
+.App.fade-out {
+  color: transparent;
+  background-color: black;
 }
 .header {
   font-size: xxx-large;
@@ -20,17 +25,17 @@
   height: 100vh;
   background: black;
   opacity: 1;
-  transition: opacity 1s ease-out; /* Fade out over 1 second */
+  transition: opacity .5s ease-out; /* Fade out over 1 second */
   z-index: 9999; /* Ensure it's on top of all content */
 }
 .fade-cover.fade-out {
-  transition: .5s;
-  height: 1vh;
-  width: 1vw;
+  transition: .7s;
+  /* height: 1vh; */
+  /* width: 1vw; */
+  padding: 90%;
   opacity: 0;
   z-index: -1;
 }
-
 .pic {
   justify-self: center;
 }
@@ -99,16 +104,24 @@ img {
   align-items: center;
 }
 .mainPageButton {
+  color: black;
+  background: white;
   margin: 3vh 0;
   width: 75%;
   font-size: x-large;
-  transition: 1s;
+  transition: .75s;
 }
 .mainPageButton:hover {
   border-radius: 50%;
   border-color: transparent;
   color: white;
   background: transparent; /* Removes background color */
+}
+.mainPageButton.fade-out {
+  transition: .4s;
+  color: transparent;
+  background-color: black;
+  border-color: transparent;
 }
 .modal-overlay {
   position: fixed;
