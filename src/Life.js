@@ -41,6 +41,7 @@ const Life = () => {
   }, [boxCount, rowCount]);
 
   const newMatrix = () => {
+    console.log('making fresh matrix....')
     setMatrix(Array.from({ length: rowCount }).map(() => (
       Array.from({ length: boxCount }).fill(0))
     ))
@@ -52,7 +53,6 @@ const Life = () => {
   }, [rowCount, boxCount])
 
   const handleClick = (rowIndex, colIndex) => {
-    console.log('click', rowIndex, colIndex)
     setMatrix(prevMatrix =>
       prevMatrix.map((row, rIndex) =>
         row.map((cell, cIndex) =>
@@ -144,6 +144,14 @@ const Life = () => {
     }
     setPaused(!p)
   }
+  const clear = () => {
+    if (tick < 2147000000) {
+      setLastTick(tick);
+      setTick(2147000000);
+    }
+    if (!paused) setPaused(true)
+    newMatrix()
+  }
   // click and drag handlers
   const handleMouseDown = () => {
     setIsMouseDown(true);
@@ -175,8 +183,6 @@ const Life = () => {
     let y = touch.clientY;
     x = Math.floor(x/boxSize)
     y = Math.floor(y/boxSize)
-    // y = Math.floor(y*1.1) - Math.floor(y * .2)// accounts for border width interference
-    console.log(y,x)
 
     if (isMouseDown) {
       handleClick(y, x);
@@ -230,7 +236,7 @@ const Life = () => {
       <div className='controls'>
         <div className='buttons'>
         <button id='arrowButton' onClick={() => {setPage('home')}}>{'\u{2302}'}</button>
-          <button id='clearButton' onClick={newMatrix}>Clear</button>
+          <button id='clearButton' onClick={clear}>Clear</button>
           <button id='arrowButton' onClick={nextGen}>+1 Gen</button>
           <button id='arrowButton' onClick={speedUp}>&#9650;</button>
           <button id='arrowButton' onClick={slowDown}>&#9660;</button>

@@ -8,7 +8,7 @@ const Instructions = () => {
       <p>- Touch/ click a cell to bring it to life<br/><br/>
       - Drag your mouse/ finger to bring many cells to life at once<br/><br/>
       - If a cell has 2 or 3 live neighbors it will stay alive into the next generation<br/><br/>
-      - If a live cell has less than 2 or more than 3 live neighbors it die (simulating over/underpopulation)<br/><br/>
+      - If a live cell has less than 2 or more than 3 live neighbors it dies (simulating over/underpopulation)<br/><br/>
       - If a dead cell has exactly 3 live neighbors it will come to life in the next generation<br/><br/>
       - See how much complexity can arise from these simple rules and HAVE FUN!
       </p>
