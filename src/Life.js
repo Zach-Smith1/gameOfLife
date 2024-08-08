@@ -52,6 +52,7 @@ const Life = () => {
   }, [rowCount, boxCount])
 
   const handleClick = (rowIndex, colIndex) => {
+    console.log('click', rowIndex, colIndex)
     setMatrix(prevMatrix =>
       prevMatrix.map((row, rIndex) =>
         row.map((cell, cIndex) =>
@@ -174,6 +175,8 @@ const Life = () => {
     let y = touch.clientY;
     x = Math.floor(x/boxSize)
     y = Math.floor(y/boxSize)
+    // y = Math.floor(y*1.1) - Math.floor(y * .2)// accounts for border width interference
+    console.log(y,x)
 
     if (isMouseDown) {
       handleClick(y, x);
@@ -212,6 +215,7 @@ const Life = () => {
                 width: boxSize + 'px',
                 height: boxSize + 'px',
                 backgroundColor: cell === 0 ? 'black' : 'white',
+                boxSizing: 'border-box',
                 border: `.1px solid ${toggle}`,
               }}
               onClick={() => handleClick(rowIndex, colIndex)}
