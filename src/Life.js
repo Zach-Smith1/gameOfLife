@@ -135,7 +135,6 @@ if (!paused)       setTick(t - 5);
       setLastTick(t - 100)
       if (!paused) setTick(t - 100);
     }
-    setPaused(false)
   }
   const slowDown = () => {
     let t = lastTick;
@@ -149,7 +148,6 @@ if (!paused)       setTick(t - 5);
       setLastTick(t + 100)
       if (!paused) setTick(t + 100);
     }
-    setPaused(false)
   }
   const pause = () => {
     let p = paused;
