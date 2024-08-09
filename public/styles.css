@@ -156,10 +156,11 @@ button {
   width: 75%;
   font-size: x-large;
   transition: .75s;
+  border-radius: 0%;
 }
 
 .mainPageButton:hover {
-  border-radius: 50%;
+  border-radius: 65%;
   border-color: transparent;
   color: white;
   background: transparent;
