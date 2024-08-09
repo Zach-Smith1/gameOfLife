@@ -75,7 +75,9 @@ button {
   border-radius: 40%;
 }
 .buttons {
+  min-width: 75vw;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 .controls {
@@ -110,12 +112,12 @@ button {
   font-size: large;
 }
 
-#arrowButtontrue {
+#arrowButtonfalse {
   background-color: #cbcbcb;
   transform: scale(0.90);
   /* Slightly shrink the button */
 }
-#arrowButtonfalse {
+#arrowButtontrue {
   transform: scale(0.98);
 }
 
@@ -153,17 +155,18 @@ button {
   color: black;
   background: white;
   margin: 3vh 0;
-  width: 75%;
+  width: 80%;
   font-size: x-large;
   transition: .75s;
   border-radius: 0%;
 }
 
 .mainPageButton:hover {
-  border-radius: 65%;
+  border-radius: 60%;
   border-color: transparent;
   color: white;
   background: transparent;
+  /* width: 70%; */
   /* Removes background color */
 }
 
@@ -252,6 +255,6 @@ button {
   }
 
   .controls {
-    font-size: small;
+    font-size: x-small;
   }
 }

@@ -168,7 +168,7 @@ if (!paused)       setTick(t - 5);
     if (gens > 0) {
       setGens(0)
     }
-    if (liveCount > 0) {
+    if (liveCount > 0 || liveCount < 0 /*error case*/) {
       setLiveCount(0)
       newMatrix()
     }
