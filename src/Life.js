@@ -7,11 +7,13 @@ const Life = () => {
   const [rowCount, setRowCount] = useState(55);
   const [matrix, setMatrix] = useState([]);
   const [lastTick, setLastTick] = useState(1000);
-  const [tick, setTick] = useState(90000);
+  const [tick, setTick] = useState(2147000000);
   const [isMouseDown, setIsMouseDown] = useState(false);
   const [paused, setPaused] = useState(true);
   const [page, setPage] = useState('life');
   const [toggle, setToggle] = useState('transparent');
+  const [gens, setGens] = useState(0);
+  const [liveCount, setLiveCount] = useState(0);
 
 
   useEffect(() => {
@@ -53,12 +55,16 @@ const Life = () => {
   }, [rowCount, boxCount])
 
   const handleClick = (rowIndex, colIndex) => {
+    if (matrix[rowIndex][colIndex] === 0) {
+      let l = liveCount + 1;
+      setLiveCount(l)
+    }
     setMatrix(prevMatrix =>
       prevMatrix.map((row, rIndex) =>
         row.map((cell, cIndex) =>
           rIndex === rowIndex && cIndex === colIndex
             ? cell = 1 : cell
-            // cell === 0 ? 1 : 0 : cell
+            // cell === 0 ? 1 : 0 : cell // this code switches live cells to dead and dead cells to live
         )
       )
     );
@@ -89,21 +95,30 @@ const Life = () => {
 
       if (m[r][c] === 0) {
         if (neighbors === 3) {
-          return 1
+          return [1,1] // dead cell comes alive, cell count ++
         } else {
-          return 0
+          return [0,0] // dead cell stays dead, cell count += 0
         }
       }
-      if (m[r][c] === 1 && (neighbors > 3 || neighbors < 2)) return 0
-      return 1
+      if (m[r][c] === 1 && (neighbors > 3 || neighbors < 2)) {
+        return [0,-1] // cell dies, cell count --
+      }
+      return [1,0]
     }
 
+    let l = liveCount;
     for (let row = 0; row < rowCount; row++) {
       for (let col = 0; col < boxCount; col++) {
-        newMatrix[row].push(cellUpdate(row, col))
+        let cell = cellUpdate(row, col);
+        l += cell[1]
+        newMatrix[row].push(cell[0])
       }
     }
+
     setMatrix(newMatrix)
+    setLiveCount(l)
+    let g = gens+1
+    setGens(g)
   }
 // button controls
   const speedUp = () => {
@@ -112,27 +127,29 @@ const Life = () => {
       return
     } else if (lastTick <= 50) {
       setLastTick(t - 5)
-      setTick(t - 5);
+if (!paused)       setTick(t - 5);
     } else if (lastTick <= 100) {
       setLastTick(t - 10)
-      setTick(t - 10);
+      if (!paused) setTick(t - 10);
     } else {
       setLastTick(t - 100)
-      setTick(t - 100);
+      if (!paused) setTick(t - 100);
     }
+    setPaused(false)
   }
   const slowDown = () => {
     let t = lastTick;
     if (lastTick < 50) {
       setLastTick(t + 5)
-      setTick(t + 5);
+      if (!paused) setTick(t + 5);
     } else if (lastTick < 100) {
       setLastTick(t + 10)
-      setTick(t + 10);
+      if (!paused) setTick(t + 10);
     } else {
       setLastTick(t + 100)
-      setTick(t + 100);
+      if (!paused) setTick(t + 100);
     }
+    setPaused(false)
   }
   const pause = () => {
     let p = paused;
@@ -150,7 +167,13 @@ const Life = () => {
       setTick(2147000000);
     }
     if (!paused) setPaused(true)
-    newMatrix()
+    if (gens > 0) {
+      setGens(0)
+    }
+    if (liveCount > 0) {
+      setLiveCount(0)
+      newMatrix()
+    }
   }
   // click and drag handlers
   const handleMouseDown = () => {
@@ -240,10 +263,14 @@ const Life = () => {
           <button id='arrowButton' onClick={nextGen}>+1 Gen</button>
           <button id='arrowButton' onClick={speedUp}>&#9650;</button>
           <button id='arrowButton' onClick={slowDown}>&#9660;</button>
-          <button onClick={pause}>{'\u{25B6}'} <strong id='pause'>{'\u{23F8}'}<strong/></strong></button>
+          <button id={`arrowButton${paused}`} onClick={pause}>{'\u{25B6}'} <strong id='pause'>{'\u{23F8}'}<strong/></strong></button>
           <button id='arrowButton' onClick={toggleGrid}>#</button>
         </div>
-          <div className='info'>{paused ? 'Paused' : `${Math.round((1000/tick)*100)/100} gen/ sec`}</div>
+          <div className='info'>
+            <span>Generations: {gens}</span>
+            <span>Live Cells: {liveCount}</span>
+            Speed: {`${Math.round((1000/lastTick)*100)/100} gen/ sec`}
+            </div>
       </div>
     </div>
   )
