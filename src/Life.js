@@ -47,6 +47,7 @@ const Life = () => {
     setMatrix(Array.from({ length: rowCount }).map(() => (
       Array.from({ length: boxCount }).fill(0))
     ))
+    setLiveCount(0)
   }
 
   useEffect(() => {
