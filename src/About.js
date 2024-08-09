@@ -59,7 +59,7 @@ It's possible even, to create patterns which emulate logic gates (and, not, or, 
 
 A very far zoom out of Paul Rendell's Turing Machine:
 <br/><br/>
-<img src='/../public/icons/turingMachine.gif' alt='patterns'/>
+<img src='../public/icons/turingMachine.gif' alt='patterns'/>
 <br/><br/><br/>
 Source: <a href="https://pi.math.cornell.edu/~lipa/mec/lesson6.html" target="_blank" rel='noreferrer'>pi.math.cornell.edu</a>
         </p>
