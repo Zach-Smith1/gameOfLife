@@ -28,7 +28,7 @@ const Instructions = () => {
       <button id='arrowButton'>&#9660;</button><br />
       <span>Decreases simultion speed (increase time between generations)</span>
       <br />
-      <button>{'\u{25B6}'} <strong id='pause'>{'\u{23F8}'}<strong /></strong></button><br />
+      <button id={`arrowButton`}>{`>`}||</button>
       <span>Pauses/ plays simultion</span>
       <br />
       <button id='arrowButton'>#</button><br/>

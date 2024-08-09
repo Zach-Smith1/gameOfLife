@@ -103,12 +103,8 @@ button {
   cursor: pointer;
 }
 
-#pause {
-  font-size: large;
-}
-
 #clearButton,
-#arrowButton {
+#arrowButton,#arrowButtontrue,#arrowButtonfalse {
   font-size: large;
 }
 
@@ -117,15 +113,10 @@ button {
   transform: scale(0.90);
   /* Slightly shrink the button */
 }
-#arrowButtontrue {
-  transform: scale(0.98);
-}
 
 #arrowButton:active {
   background-color: #cbcbcb;
-  /* Even darker blue when clicked */
   transform: scale(0.98);
-  /* Slightly shrink the button */
 }
 
 .info {
@@ -229,11 +220,6 @@ button {
   .grid {
     touch-action: none
   }
-
-  #pause {
-    font-size: small;
-  }
-
   .info {
     padding-top: 1px;
     padding-bottom: 1px;
@@ -243,7 +229,7 @@ button {
   }
 
   #clearButton,
-  #arrowButton {
+  #arrowButton,#arrowButtontrue,#arrowButtonfalse {
     font-size: small;
   }
 

@@ -262,7 +262,7 @@ if (!paused)       setTick(t - 5);
           <button id='arrowButton' onClick={nextGen}>+1 Gen</button>
           <button id='arrowButton' onClick={speedUp}>&#9650;</button>
           <button id='arrowButton' onClick={slowDown}>&#9660;</button>
-          <button id={`arrowButton${paused}`} onClick={pause}>{'\u{25B6}'} <strong id='pause'>{'\u{23F8}'}<strong/></strong></button>
+          <button id={`arrowButton${paused}`} onClick={pause}>{`>`}||</button>
           <button id='arrowButton' onClick={toggleGrid}>#</button>
         </div>
           <div className='info'>
