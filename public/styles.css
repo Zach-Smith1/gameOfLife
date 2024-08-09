@@ -9,14 +9,17 @@
   background-color: rgb(34, 33, 31);
   transition: .4s;
 }
+
 .App.fade-out {
   color: transparent;
   background-color: black;
 }
+
 .header {
   font-size: xxx-large;
   margin: 10vh;
 }
+
 .fade-cover {
   position: fixed;
   top: 0;
@@ -25,9 +28,12 @@
   height: 100vh;
   background: black;
   opacity: 1;
-  transition: opacity .5s ease-out; /* Fade out over 1 second */
-  z-index: 9999; /* Ensure it's on top of all content */
+  transition: opacity .5s ease-out;
+  /* Fade out over 1 second */
+  z-index: 9999;
+  /* Ensure it's on top of all content */
 }
+
 .fade-cover.fade-out {
   transition: .7s;
   /* height: 1vh; */
@@ -36,40 +42,54 @@
   opacity: 0;
   z-index: -1;
 }
+
 .pic {
   justify-self: center;
 }
+
 #smallPic {
   max-width: 50%;
 }
+
 img {
   width: 100%;
   object-fit: contain;
 }
- html {
-    height: 100%;
-    overflow: hidden; /* Prevents scrolling */
- }
- body {
+
+html {
+  height: 100%;
+  overflow: hidden;
+  /* Prevents scrolling */
+}
+
+body {
   height: 100%;
   margin: 0;
-  overflow: hidden; /* Prevents scrolling */
- }
- button {
+  overflow: hidden;
+  /* Prevents scrolling */
+}
+
+button {
   justify-self: center;
-  margin: 3px
- }
- .controls {
+  margin: 1px;
+  border-radius: 40%;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+}
+.controls {
   z-index: 1000;
   width: 100vw;
   bottom: 0vh;
-  padding: 1vh;
+  padding: 1px;
   position: sticky;
   display: flex;
-  justify-content: space-evenly;
-  align-items: start;
+  justify-content: space-between;
+  align-items: center;
   background-color: grey;
 }
+
 .grid {
   display: 'flex';
   flex-wrap: 'wrap';
@@ -80,33 +100,47 @@ img {
   text-align: center;
   cursor: pointer;
 }
+
 #pause {
   font-size: large;
 }
-#clearButton,#arrowButton {
+
+#clearButton,
+#arrowButton {
   font-size: large;
 }
-#arrowButtontrue{
+
+#arrowButtontrue {
   background-color: #cbcbcb;
-  transform: scale(0.90); /* Slightly shrink the button */
+  transform: scale(0.90);
+  /* Slightly shrink the button */
 }
+#arrowButtonfalse {
+  transform: scale(0.98);
+}
+
 #arrowButton:active {
-  background-color: #cbcbcb; /* Even darker blue when clicked */
-  transform: scale(0.98); /* Slightly shrink the button */
+  background-color: #cbcbcb;
+  /* Even darker blue when clicked */
+  transform: scale(0.98);
+  /* Slightly shrink the button */
 }
+
 .info {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   color: white;
-  width: 22vw;
+  width: 25vw;
 }
+
 .instructions {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 .mainOptions {
   width: 50%;
   display: flex;
@@ -114,6 +148,7 @@ img {
   justify-content: center;
   align-items: center;
 }
+
 .mainPageButton {
   color: black;
   background: white;
@@ -122,18 +157,22 @@ img {
   font-size: x-large;
   transition: .75s;
 }
+
 .mainPageButton:hover {
   border-radius: 50%;
   border-color: transparent;
   color: white;
-  background: transparent; /* Removes background color */
+  background: transparent;
+  /* Removes background color */
 }
+
 .mainPageButton.fade-out {
   transition: .4s;
   color: transparent;
   background-color: black;
   border-color: transparent;
 }
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -146,6 +185,7 @@ img {
   align-items: center;
   z-index: 999;
 }
+
 .modal-content {
   background-color: rgb(66, 75, 84);
   border: 1px solid #f1f1f1;
@@ -181,25 +221,35 @@ img {
   button {
     margin: 1px;
   }
+
   .grid {
     touch-action: none
   }
+
   #pause {
     font-size: small;
   }
+
   .info {
-    font-size: x-small;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-size: xx-small;
     position: relative;
+    align-items: start;
   }
-  #clearButton,#arrowButton {
+
+  #clearButton,
+  #arrowButton {
     font-size: small;
   }
+
   .modal-content {
     border-radius: 3px;
     padding: 0em 2em 2em 1em;
     width: 50vw;
     font-size: small;
   }
+
   .controls {
     font-size: small;
   }
