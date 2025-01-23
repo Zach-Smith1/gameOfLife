@@ -25,13 +25,13 @@ const Life = () => {
       const screenHeight = window.screen.height;
       let windowHeight = window.innerHeight;
       let windowWidth = window.innerWidth;
-      let boxSize = Math.max(screenWidth, screenHeight) * 0.005; // Each box is .05% of the screen width
-      if (screenWidth < 900 || screenHeight < 900) boxSize *= 2; // boxs are bigger on mobile
-      const newBoxCount = Math.floor(Math.min(windowWidth, screenWidth) / boxSize);
-      const newRowCount = Math.floor(Math.min(windowHeight, screenHeight) / boxSize);
-      setBoxSize(boxSize);
-      setBoxCount(newBoxCount);
-      setRowCount(newRowCount);
+      let bs = boxSize || Math.max(screenWidth, screenHeight) * 0.005; // Each box is .05% of the screen width
+      if (screenWidth < 900 || screenHeight < 900) bs *= 2; // boxs are bigger on mobile
+      const newBoxCount = Math.floor(Math.min(windowWidth, screenWidth) / bs);
+      const newRowCount = Math.floor(Math.min(windowHeight, screenHeight) / bs);
+      setBoxSize(bs);
+      setBoxCount(newBoxCount * 3);
+      setRowCount(newRowCount * 3);
     };
 
     window.addEventListener('resize', updateLayout);
@@ -40,7 +40,7 @@ const Life = () => {
 
     // Cleanup event listener on component unmount
     return () => window.removeEventListener('resize', updateLayout);
-  }, [boxCount, rowCount]);
+  }, [boxCount, rowCount, boxSize]);
 
   const newMatrix = () => {
     console.log('making fresh matrix....')
@@ -52,7 +52,7 @@ const Life = () => {
 
   useEffect(() => {
     // starting matrix
-    newMatrix()
+    if (boxSize === 10 ) newMatrix()
   }, [rowCount, boxCount])
 
   const handleClick = (rowIndex, colIndex) => {
@@ -109,17 +109,18 @@ const Life = () => {
 
     let l = liveCount;
     for (let row = 0; row < rowCount; row++) {
+      newMatrix[row] = [];
       for (let col = 0; col < boxCount; col++) {
         let cell = cellUpdate(row, col);
-        l += cell[1]
-        newMatrix[row].push(cell[0])
+        l += cell[1];
+        newMatrix[row].push(cell[0]);
       }
     }
 
-    setMatrix(newMatrix)
-    setLiveCount(l)
-    let g = gens+1
-    setGens(g)
+    setMatrix(newMatrix);
+    setLiveCount(l);
+    let g = gens + 1;
+    setGens(g);
   }
 // button controls
   const speedUp = () => {
@@ -218,7 +219,16 @@ if (!paused)       setTick(t - 5);
       setToggle('transparent')
     }
   }
-
+///////////// Testing new functionality here
+  const boxSizeUp = () => {
+    let b = boxSize * 1.5;
+    setBoxSize(b)
+  }
+  const boxSizeDown = () => {
+    let b = boxSize * .75;
+    setBoxSize(b)
+  }
+////////////
   useEffect(() => {
     const intervalId = setInterval(nextGen, tick);
     return () => clearInterval(intervalId);
@@ -235,8 +245,10 @@ if (!paused)       setTick(t - 5);
     >
       <div className="fade-cover"></div>
       {matrix.map((row, rowIndex) => (
+       rowIndex >= (rowCount / 3) && rowIndex <= (rowCount / 3 * 2) && (
         <div key={rowIndex} style={{ display: 'flex' }}>
           {row.map((cell, colIndex) => (
+            colIndex >= (boxCount / 3) && colIndex <= (boxCount / 3 * 2) && (
             <div
               key={colIndex}
               style={{
@@ -252,8 +264,10 @@ if (!paused)       setTick(t - 5);
             >
               {/* cell content here */}
             </div>
+            )
           ))}
         </div>
+      )
       ))}
       <div className='controls'>
         <div className='buttons'>
@@ -264,6 +278,8 @@ if (!paused)       setTick(t - 5);
           <button id='arrowButton' onClick={slowDown}>&#9660;</button>
           <button id={`arrowButton${paused}`} onClick={pause}>{`>`}||</button>
           <button id='arrowButton' onClick={toggleGrid}>#</button>
+          <button id='arrowButton' onClick={boxSizeUp}>b^</button>
+          <button id='arrowButton' onClick={boxSizeDown}>bv</button>
         </div>
           <div className='info'>
             <span>Generations: {gens}</span>
